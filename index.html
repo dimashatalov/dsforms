@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Default html</title>
+<link href="style.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="favico.png" />
+</head>
+<body>
+<h1>Default html</h1>
+<p>This is default html page</p>
+
+<form action=""" method="post" id="my_form">
+<input type="email" data-required="1" name="email"/>
+<input type="password" name="password"/>
+<input type="password" name="password2"/>
+
+<div class="dsform_message"></div>
+<input type="submit"/>
+
+</form>
+
+<script src="dsforms.js"></script>
+<script>
+
+    let form = new DSForms("my_form", {
+        beforeSubmit: function() {
+            console.log("beforeSubmit", this.get("inputs"));
+            return true;
+        },
+
+        afterSubmit: function() {
+            console.log("afterSubmit", this.get("inputs"));
+            return false;
+        }        
+    });
+
+</script>
+</body>
+</html>
