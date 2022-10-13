@@ -1,18 +1,18 @@
 # DSForm doc
 ## Description
 Script to process form and send request to server in very simple way.
-> Set required fields like this
+#### Set required fields like this
 
     <input data-required="1"/>
-> Field with error
+#### Field with error
 
     <input data-required="1" class="error"/>
     
-> Field with error
+#### Form states
 
     <form class="loading">, <form class="done">
     
-> Error format form server
+#### Error format form server
 
     { 
         status : "error",
@@ -20,14 +20,22 @@ Script to process form and send request to server in very simple way.
         message : "Error message"
     }
     
-> Success
+#### Success
 
     { 
         status : "success",
         message : "Optional, will override js message"
     }
     
+ #### Custom data send to server, which was not in form
+
+    // Use beforeSubmit
+    beforeSubmit = function() {
+        let inputs = get("inputs");
+        inputs.my_custom_field = "My custom field";
+    }
     
+       
 ## Init
     let form = new DSForms("my_form_id", {});
 # {} related to settings, which are following:
