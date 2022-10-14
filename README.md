@@ -35,6 +35,8 @@ Script to process form and send request to server in very simple way.
         inputs.my_custom_field = "My custom field";
     }
     
+#### Optional div where all errors and success messages will appear
+    <div class="dsform_message"></div>
        
 ## Init
     let form = new DSForms("my_form_id", {});

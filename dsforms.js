@@ -9,6 +9,10 @@ function DSForms(formID, settings)
         "success" : "Form was submitted"
     }
 
+    this.setSettings = function(k, v) {
+        settings[k] = v;
+    }
+
     var formIsLocked = false;
     
     const construct = function() {
@@ -42,7 +46,7 @@ function DSForms(formID, settings)
         if (formIsLocked === true) return false;
         formIsLocked = true;
 
-        set("errors", []);
+        cleanErrors();
 
         getInputs();
 
@@ -126,7 +130,7 @@ function DSForms(formID, settings)
     const displayResult = function(resp) {
 
         if (resp.status == "error") {
-            if (typeof resp.error_code != "undefined") {
+            if (typeof resp.message != "undefined") {
                 addError(resp);
                 displayErrors();
                 formIsLocked = false;
@@ -167,6 +171,12 @@ function DSForms(formID, settings)
 
         let form = get("formObj");
         form.getElementsByClassName("dsform_message")[0].innerHTML = html;
+    }
+
+    const cleanErrors = function() {
+        set("errors", []);
+        let form = get("formObj");
+        form.getElementsByClassName("dsform_message")[0].innerHTML = '';
     }
 
     const showSuccess = function(rsp) {
@@ -278,6 +288,7 @@ function DSForms(formID, settings)
 
 
         const checkRequired = function() {
+
             let formElements = Array.from(get("formObj").elements);
             console.log("formElements",formElements);
             
@@ -299,6 +310,11 @@ function DSForms(formID, settings)
         }
 
         const checkPasswords = function() {
+
+            if (typeof settings.ignorePasswordConfirmation != "undefined" && settings.ignorePasswordConfirmation === true) {
+                return true;
+            }
+
             let password1 = false;
             let password2 = false;
             let password2_element = false;
