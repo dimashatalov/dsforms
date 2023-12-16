@@ -10,29 +10,26 @@
 <p>This is default html page</p>
 
 <form action=""" method="post" id="my_form">
-<input type="email" data-required="1" name="email"/>
+
+<div id="my_form__email">
+    <div>
+        <input type="text" data-required="1" name="email" data-container="my_form__email"/>
+    </div>
+</div>
+
 <input type="password" name="password"/>
 <input type="password" name="password2"/>
 
-<div class="dsform_message"></div>
+<div class="messages"></div>
 <input type="submit"/>
 
 </form>
 
-<script src="dsforms.js"></script>
+<script src="dist/ds-forms.js?t=1"></script>
+<script src="test.js"></script>
+
 <script>
 
-    let form = new DSForms("my_form", {
-        beforeSubmit: function() {
-            console.log("beforeSubmit", this.get("inputs"));
-            return true;
-        },
-
-        afterSubmit: function() {
-            console.log("afterSubmit", this.get("inputs"));
-            return false;
-        }        
-    });
 
 </script>
 </body>

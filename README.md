@@ -1,6 +1,19 @@
 # DSForm doc
+## Install
+    npm install ds-forms
+
 ## Description
 Script to process form and send request to server in very simple way.
+
+## Basic Field Structure
+
+        <div class="ds-form-field">
+            <input type="text">
+        </div>
+
+    Script require parent container to put state classes to container instead field itself.
+
+### OLD below
 #### Set required fields like this
 
     <input data-required="1"/>
